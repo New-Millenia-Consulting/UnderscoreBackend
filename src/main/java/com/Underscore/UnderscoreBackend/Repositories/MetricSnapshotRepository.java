@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MetricSnapshotRepository extends JpaRepository<MetricSnapshot, Long> {
-
+    MetricSnapshot findTopByUserIdOrderByDateDesc(String userId);
 }

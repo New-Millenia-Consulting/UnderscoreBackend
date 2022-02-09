@@ -12,7 +12,10 @@ public class MetricSnapshotService {
     MetricSnapshotRepository metricSnapshotRepository;
 
     public MetricSnapshot saveMetricSnapshot(MetricSnapshot metricSnapshot) {
-        System.out.println(metricSnapshot.toString());
         return metricSnapshotRepository.saveAndFlush(metricSnapshot);
+    }
+
+    public MetricSnapshot getLatestMetricSnapshot(String userId) {
+        return metricSnapshotRepository.findTopByUserIdOrderByDateDesc(userId);
     }
 }
