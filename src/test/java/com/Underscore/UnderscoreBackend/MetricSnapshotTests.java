@@ -36,19 +36,19 @@ class MetricSnapshotTests {
     @Test
     void getLatestMetricSnapshot() {
         String userId = "Zain";
-        String newMotionValue = "New Motion Value";
+        Integer newMotionWeight = 20;
         MetricSnapshot metricSnapshot = new MetricSnapshot();
         metricSnapshot.setUserId(userId);
         metricSnapshotService.saveMetricSnapshot(metricSnapshot);
         metricSnapshot = new MetricSnapshot();
         metricSnapshot.setUserId(userId);
-        metricSnapshot.setMotionValue(newMotionValue);
+        metricSnapshot.setMotionWeight(newMotionWeight);
         metricSnapshotService.saveMetricSnapshot(metricSnapshot);
         MetricSnapshot metricSnapshotFromDb = metricSnapshotService.getLatestMetricSnapshot(userId);
         assertThat(metricSnapshotFromDb).isNotNull();
         assertThat(metricSnapshotFromDb.getDate()).isNotNull();
         assertThat(metricSnapshotFromDb.getId()).isNotNull();
-        assertThat(metricSnapshotFromDb.getMotionValue()).isEqualTo(newMotionValue);
+        assertThat(metricSnapshotFromDb.getMotionWeight()).isEqualTo(newMotionWeight);
     }
 
 }
