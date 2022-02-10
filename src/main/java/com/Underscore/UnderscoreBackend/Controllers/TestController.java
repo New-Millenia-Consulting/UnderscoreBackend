@@ -15,8 +15,7 @@ public class TestController {
 
     @GetMapping(value = "/test")
     public String getData() {
-        System.out.println("hey you hit me");
-        return "firing again me back from the server";
+        return "Underscore backend test endpoint is up and running!";
     }
 
     @PostMapping(value = "/metric-snapshot/latest")
