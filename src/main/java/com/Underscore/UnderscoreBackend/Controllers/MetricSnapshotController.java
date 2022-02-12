@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 
 @RestController
 @RequestMapping("/metric-snapshot")
@@ -20,13 +21,8 @@ public class MetricSnapshotController {
     }
 
     @GetMapping(value = "/latest")
-    public MetricSnapshot getLast(@RequestBody LinkedHashMap<String,String> body) {
-        String userId = body.get("userId");
-        MetricSnapshot metricSnapshot = metricSnapshotService.getLatestMetricSnapshot(userId);
-        if(metricSnapshot == null) {
-            return getDefaultMetricSnapshot(userId);
-        }
-        return metricSnapshot;
+    public List<MetricSnapshot> getLastListOfMetricSnapshots() {
+        return metricSnapshotService.getTop10MetricSnapshotsByDate();
     }
 
     @PostMapping(value = "/latest/userId")
