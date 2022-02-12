@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -49,6 +50,22 @@ class MetricSnapshotTests {
         assertThat(metricSnapshotFromDb.getDate()).isNotNull();
         assertThat(metricSnapshotFromDb.getId()).isNotNull();
         assertThat(metricSnapshotFromDb.getMotionWeight()).isEqualTo(newMotionWeight);
+    }
+
+    @Test
+    void getTop10MetricSnapshots() {
+        String userId = "Zain";
+        Integer newMotionWeight = 20;
+        MetricSnapshot metricSnapshot = new MetricSnapshot();
+        metricSnapshot.setUserId(userId);
+        metricSnapshotService.saveMetricSnapshot(metricSnapshot);
+        metricSnapshot = new MetricSnapshot();
+        metricSnapshot.setUserId(userId);
+        metricSnapshot.setMotionWeight(newMotionWeight);
+        metricSnapshotService.saveMetricSnapshot(metricSnapshot);
+        List<MetricSnapshot> metricSnapshotsFromDb = metricSnapshotService.getTop10MetricSnapshotsByDate();
+        assertThat(metricSnapshotsFromDb).isNotNull();
+        assertThat(metricSnapshotsFromDb.size()).isGreaterThan(0);
     }
 
 }
