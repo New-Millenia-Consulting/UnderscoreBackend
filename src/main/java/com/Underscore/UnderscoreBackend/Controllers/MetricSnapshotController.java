@@ -20,6 +20,12 @@ public class MetricSnapshotController {
         return metricSnapshotService.saveMetricSnapshot(metricSnapshot);
     }
 
+    @PostMapping(value = "/id")
+    public MetricSnapshot loadMetricSnapshotById(@RequestBody LinkedHashMap<String,Long> body) {
+        Long id = body.get("id");
+        return metricSnapshotService.getSnapshotById(id);
+    }
+
     @GetMapping(value = "/latest")
     public List<MetricSnapshot> getLastListOfMetricSnapshots() {
         return metricSnapshotService.getTop10MetricSnapshotsByDate();

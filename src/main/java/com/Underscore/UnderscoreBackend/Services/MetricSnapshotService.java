@@ -17,6 +17,10 @@ public class MetricSnapshotService {
         return metricSnapshotRepository.saveAndFlush(metricSnapshot);
     }
 
+    public MetricSnapshot getSnapshotById(Long id) {
+        return metricSnapshotRepository.findById(id).get();
+    }
+
     public MetricSnapshot getLatestMetricSnapshot(String userId) {
         return metricSnapshotRepository.findTopByUserIdOrderByDateDesc(userId);
     }
