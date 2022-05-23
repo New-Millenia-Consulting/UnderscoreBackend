@@ -37,31 +37,31 @@ class MetricSnapshotTests {
     @Test
     void getLatestMetricSnapshot() {
         String userId = "Zain";
-        Integer newMotionWeight = 20;
+        String newSnapshotName = "Poopity Scoop";
         MetricSnapshot metricSnapshot = new MetricSnapshot();
         metricSnapshot.setUserId(userId);
         metricSnapshotService.saveMetricSnapshot(metricSnapshot);
         metricSnapshot = new MetricSnapshot();
         metricSnapshot.setUserId(userId);
-        metricSnapshot.setMotionWeight(newMotionWeight);
+        metricSnapshot.setSnapshotName(newSnapshotName);
         metricSnapshotService.saveMetricSnapshot(metricSnapshot);
         MetricSnapshot metricSnapshotFromDb = metricSnapshotService.getLatestMetricSnapshot(userId);
         assertThat(metricSnapshotFromDb).isNotNull();
         assertThat(metricSnapshotFromDb.getDate()).isNotNull();
         assertThat(metricSnapshotFromDb.getId()).isNotNull();
-        assertThat(metricSnapshotFromDb.getMotionWeight()).isEqualTo(newMotionWeight);
+        assertThat(metricSnapshotFromDb.getSnapshotName()).isEqualTo(newSnapshotName);
     }
 
     @Test
     void getTop10MetricSnapshots() {
         String userId = "Zain";
-        Integer newMotionWeight = 20;
+        String newSnapshotName = "Poopity Scoop";
         MetricSnapshot metricSnapshot = new MetricSnapshot();
         metricSnapshot.setUserId(userId);
         metricSnapshotService.saveMetricSnapshot(metricSnapshot);
         metricSnapshot = new MetricSnapshot();
         metricSnapshot.setUserId(userId);
-        metricSnapshot.setMotionWeight(newMotionWeight);
+        metricSnapshot.setSnapshotName(newSnapshotName);
         metricSnapshotService.saveMetricSnapshot(metricSnapshot);
         List<MetricSnapshot> metricSnapshotsFromDb = metricSnapshotService.getTop10MetricSnapshotsByDate();
         assertThat(metricSnapshotsFromDb).isNotNull();
