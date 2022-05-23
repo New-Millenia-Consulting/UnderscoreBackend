@@ -35,15 +35,6 @@ public class MetricSnapshotController {
     public MetricSnapshot getLatestMetricSnapshot(@RequestBody LinkedHashMap<String,String> body) {
         String userId = body.get("userId");
         MetricSnapshot metricSnapshot = metricSnapshotService.getLatestMetricSnapshot(userId);
-        if(metricSnapshot == null) {
-            return getDefaultMetricSnapshot(userId);
-        }
-        return metricSnapshot;
-    }
-
-    private MetricSnapshot getDefaultMetricSnapshot(String userId) {
-        MetricSnapshot metricSnapshot = new MetricSnapshot();
-        metricSnapshot.setDefaultValues();
         return metricSnapshot;
     }
 }
